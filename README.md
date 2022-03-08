@@ -6,4 +6,4 @@ Set the date, subject (or multiple subjects if you like), number of pages and sc
 
 
 
-![scraper](https://user-images.githubusercontent.com/56868809/157295732-02b8cedd-aa7a-4f6a-8637-e49fa8e57afb.png)
+![scraper](https://user-images.githubusercontent.com/56868809/157312375-1e0890cd-2ceb-467d-b1ec-3368f35f9073.png)

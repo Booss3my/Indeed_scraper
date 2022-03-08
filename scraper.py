@@ -45,18 +45,21 @@ def transform(soup,offerlist):
     return
 
 
+############### parameters
+max_date= 7 #7 day old offers 
+subjects =["data science","data analysis"]
+pages = 5
+########################""""
 
 offerlist=[]
-max_date= 7 #7 day old offers 
-subject ="data science"
-
-for i in range (0,40,10):
-    soup = extract (max_date,i,subject)
-    transform(soup,offerlist)
+for subject in subjects:
+    for i in range (0,pages*10,10):
+        soup = extract (max_date,i,subject)
+        transform(soup,offerlist)
 
 df = pd.DataFrame(offerlist)
 print(df.head())
-df.to_excel('jobs.xlsx')
+df.to_excel('offers.xlsx') # or to_csv 
 
 
  

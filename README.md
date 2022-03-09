@@ -1,5 +1,5 @@
 # Indeed web scraper
-A webscraper to help me brush over offers more quickly.
+A webscraper to help me brush over internship offers more quickly.
 
 
 Set the date, subject (or multiple subjects if you like), number of pages and scrape away.

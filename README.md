@@ -1,4 +1,4 @@
-# Datascraper
+# Indeed web scraper
 A webscraper to help me brush over offers more quickly.
 
 

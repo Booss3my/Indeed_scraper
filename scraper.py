@@ -57,8 +57,10 @@ def transform(soup: BeautifulSoup):
             div.find('div', attrs={'data-testid': 'text-location'}))
         contract = textify(
             div.find('div', attrs={'data-testid': 'attribute_snippet_testid'}))
-        freshness = textify(div.find("span", class_="date"))
-        link = textify(div.find("a", {'id': re.compile(r"job")}))
+        freshness = textify(
+            div.find("span", class_="date"))
+        link = textify(
+            div.find("a", {'id': re.compile(r"job")}))
         offer = {
             'title': title,
             'company': company,

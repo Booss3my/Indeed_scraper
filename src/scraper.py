@@ -7,8 +7,9 @@ import os
 from dotenv import load_dotenv
 from datetime import date, timedelta
 
+RPATH = os.path.dirname(os.path.dirname(__file__))
 today = date.today()
-load_dotenv()
+load_dotenv(os.path.join(RPATH,".env"))
 
 def extract(age: int, start: int, subject: str) -> BeautifulSoup:
     """
@@ -40,11 +41,11 @@ def textify(div):
 
 def transform(soup: BeautifulSoup):
     """
-    Transforms the parsed HTML content into a list of job offer dictionaries.
+    Transforms the parsed HTML content into a of job offer dataframe.
 
     Args:
         soup (BeautifulSoup): Parsed HTML content.
-        offerlist (list): List to store the job offer dictionaries.
+  
     """
     offer_list = []
     divs = soup.find_all("div", attrs={"class": re.compile(r"result job")})
@@ -87,7 +88,7 @@ def freshness_to_date(freshness):
     return dates
 
 
-def main(max_date: int, subjects: list, pages: int):
+def scrape(max_date: int, subjects: list, pages: int):
     """
     Main function to extract, transform, sort, and save job offers.
 
@@ -105,8 +106,8 @@ def main(max_date: int, subjects: list, pages: int):
             offerlist.append(df)
 
     df = pd.concat(offerlist)
-    df.sort_values(by=date).to_csv('offers.csv')
-
+    df.reset_index(drop=True).to_csv('offers.csv',index=False)
+    
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Indeed Job Scraper")
@@ -118,4 +119,4 @@ if __name__ == "__main__":
                         help="Number of pages to scrape per subject")
     args = parser.parse_args()
 
-    main(args.max_date, args.subjects, args.pages)
+    scrape(args.max_date, args.subjects, args.pages)

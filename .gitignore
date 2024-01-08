@@ -1,1 +1,8 @@
 .env
+*.csv
+/dags
+/logs
+/config
+/plugins
+/__pycache__
+/.ipynb_checkpoints

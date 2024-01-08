@@ -1,0 +1,5 @@
+beautifulsoup4==4.12.2
+pandas==2.1.4
+python-dotenv==1.0.0
+Requests==2.31.0
+zenrows==1.3.2

@@ -78,7 +78,6 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/requirements.txt:/opt/airflow/requirements.txt
 
   user: "${AIRFLOW_UID:-50000}:0"
-  command: pip install -r requirements.txt
   depends_on:
     &airflow-common-depends-on
     redis:
@@ -161,6 +160,7 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
+    command: pip install -r requirements.txt
     environment:
       <<: *airflow-common-env
       # Required to handle warm shutdown of the celery workers properly

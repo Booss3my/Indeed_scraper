@@ -107,7 +107,7 @@ services:
       - postgres-db-volume:/var/lib/postgresql/data
       - ./postgresql.conf:/etc/postgresql/postgresql.conf
       - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
-    command: postgres -c config_file=/home/ubuntu/Datascraper/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s

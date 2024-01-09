@@ -24,7 +24,7 @@ ingestion_dag = DAG(
     'Indscraping_dag',
     default_args=default_args,
     description='Job offer records scraping',
-    schedule_interval=timedelta(days=1),
+    schedule_interval=timedelta(minutes=1),
     catchup=False
 )
 

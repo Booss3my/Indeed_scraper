@@ -70,7 +70,7 @@ x-airflow-common:
     # for other purpose (development, test and especially production usage) build/extend Airflow image.
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
-    - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/airflow/src
+    - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/src
     - ${AIRFLOW_PROJ_DIR:-.}/dags:/opt/airflow/dags
     - ${AIRFLOW_PROJ_DIR:-.}/logs:/opt/airflow/logs
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
@@ -84,19 +84,6 @@ x-airflow-common:
       condition: service_healthy
 
 services:
-  # mysql:
-  #       image: mysql:5.7
-  #       container_name: airflow_db
-  #       environment:
-  #           - MYSQL_ROOT_PASSWORD=root
-  #           - MYSQL_DATABASE=airflow
-  #           - MYSQL_USER=airflow
-  #           - MYSQL_PASSWORD=airflow
-  #       command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-  #       healthcheck:
-  #         test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-  #         timeout: 1s
-  #         retries: 10
   postgres:
     image: postgres:13
     environment:
@@ -105,21 +92,13 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
+      - ${AIRFLOW_PROJ_DIR:-}./postgre_config:/etc/postgresql/14/main
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
       retries: 5
       start_period: 5s
     restart: always
-
-  pgadmin4:
-        image: dpage/pgadmin4
-        restart: always
-        environment:
-            - PGADMIN_DEFAULT_EMAIL=contact@company.com
-            - PGADMIN_DEFAULT_PASSWORD=airflow
-        ports:
-            - "15432:80"
 
   redis:
     image: redis:latest
@@ -188,20 +167,20 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-  # airflow-triggerer:
-  #   <<: *airflow-common
-  #   command: triggerer
-  #   healthcheck:
-  #     test: ["CMD-SHELL", 'airflow jobs check --job-type TriggererJob --hostname "$${HOSTNAME}"']
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
-  #     start_period: 30s
-  #   restart: always
-  #   depends_on:
-  #     <<: *airflow-common-depends-on
-  #     airflow-init:
-  #       condition: service_completed_successfully
+  airflow-triggerer:
+    <<: *airflow-common
+    command: triggerer
+    healthcheck:
+      test: ["CMD-SHELL", 'airflow jobs check --job-type TriggererJob --hostname "$${HOSTNAME}"']
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    restart: always
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
 
   airflow-init:
     <<: *airflow-common
@@ -304,7 +283,3 @@ services:
 
 volumes:
   postgres-db-volume:
-
-
-
-

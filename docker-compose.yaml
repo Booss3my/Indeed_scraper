@@ -76,6 +76,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/config:/opt/airflow/config
     - ${AIRFLOW_PROJ_DIR:-.}/plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}:0"
+  command: pip install -r requirements.txt
   depends_on:
     &airflow-common-depends-on
     redis:

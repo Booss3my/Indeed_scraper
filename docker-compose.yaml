@@ -150,7 +150,9 @@ services:
 
   airflow-worker:
     <<: *airflow-common
-    command: celery worker
+    command: 
+      - celery worker
+      - pip install -r requirements.txt
     healthcheck:
       # yamllint disable rule:line-length
       test:
@@ -160,7 +162,6 @@ services:
       timeout: 10s
       retries: 5
       start_period: 30s
-    command: pip install -r requirements.txt
     environment:
       <<: *airflow-common-env
       # Required to handle warm shutdown of the celery workers properly

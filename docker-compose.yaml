@@ -105,9 +105,7 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
-      - ./postgresql.conf:/etc/postgresql/postgresql.conf
-      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+      - ${AIRFLOW_PROJ_DIR:-.}/psg_config:/etc/postgresql/
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s

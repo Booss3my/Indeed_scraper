@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import re
 import pandas as pd
-import argparse
 from zenrows import ZenRowsClient
 import os
 from dotenv import load_dotenv
@@ -9,7 +8,6 @@ from datetime import date, timedelta
 
 RPATH = os.path.dirname(os.path.dirname(__file__))
 today = date.today()
-load_dotenv(os.path.join(RPATH,".env"))
 
 def extract(age: int, start: int, subject: str) -> BeautifulSoup:
     """
@@ -63,15 +61,14 @@ def transform(soup: BeautifulSoup):
         link = textify(
             div.find("a", {'id': re.compile(r"job")}))
         offer = {
-            'title': title,
-            'company': company,
-            'freshness': freshness,
-            'contract': contract,
-            'location': location,
-            'link': link
+            'Title': title,
+            'Company': company,
+            'Freshness': freshness,
+            'Contract': contract,
+            'Location': location,
+            'Link': link
         }
         offer_list.append(offer)
-
     return pd.DataFrame(offer_list)
 
 
@@ -88,7 +85,7 @@ def freshness_to_date(freshness):
     return dates
 
 
-def scrape(max_date: int, subjects: list, pages: int):
+def scrape(max_date=2, subjects=["data science"], pages=3):
     """
     Main function to extract, transform, sort, and save job offers.
 
@@ -102,21 +99,9 @@ def scrape(max_date: int, subjects: list, pages: int):
         for i in range(0, pages * 10, 10):
             soup = extract(max_date, i, subject)
             df = transform(soup)
-            df["date"] = freshness_to_date(df["freshness"])
+            df["Date"] = freshness_to_date(df["Freshness"])
             offerlist.append(df)
 
     df = pd.concat(offerlist)
-    df.reset_index(drop=True).to_csv('offers.csv',index=False)
-    
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Indeed Job Scraper")
-    parser.add_argument("--max_date", type=int, default=10,
-                        help="Age of offers in days")
-    parser.add_argument("--subjects", nargs="+", default=[
-                        "data science", "data analysis"], help="List of subjects for job offers")
-    parser.add_argument("--pages", type=int, default=4,
-                        help="Number of pages to scrape per subject")
-    args = parser.parse_args()
-
-    scrape(args.max_date, args.subjects, args.pages)
+    df.reset_index(drop=True)
+    df.to_csv(os.path.join(RPATH,"tmp/offers.csv"))

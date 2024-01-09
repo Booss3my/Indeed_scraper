@@ -1,6 +1,5 @@
 import requests
 from bs4 import BeautifulSoup
-import random
 import concurrent.futures
 
 #get the list of free proxies

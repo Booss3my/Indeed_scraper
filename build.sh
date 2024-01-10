@@ -1,2 +1,2 @@
 sudo docker build . --tag extending_airflow:latest
-sudo docker-compose up
+sudo docker-compose up -d

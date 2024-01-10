@@ -4,7 +4,7 @@ This is an indeed webscraper using a paid webproxy API for scraping (used to wor
 ![scraper](https://user-images.githubusercontent.com/56868809/157312375-1e0890cd-2ceb-467d-b1ec-3368f35f9073.png)
 
 
-# Before Running scraper on an EC2 UBUNTU instance
+# Example using an EC2 Ubuntu instance
 - Make sure your instance has sufficient compute (2vcpus and 8Gb Ram is more than enough) 
 - Make sure you allow inboud connections on port 8080 for the (airflow webserver) and 5432 for postgres.
 - Set up a init_instance.sh file, then run it, and it should start all containers:
@@ -48,6 +48,12 @@ cd Datascraper
 
 sh build.sh
 ```
+# Why not search directly on indeed ? 
+
+More flexibilty and more options:
+- Search by technology, skill, language.
+- Filter results by companies of interest.
+- Possibility of also automating the application process.
 
 # Troubleshoosting
 

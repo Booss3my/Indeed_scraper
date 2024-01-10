@@ -59,7 +59,7 @@ More flexibilty and more options:
 
 If airflow-init breaks due to no database "airflow" in the postgres container, you can go in the postgres container and create the database then rerun the build file:
 ```
-exec -it docker_postgres_1 
+exec -it datascraper_postgres_1 
 ```
 ```
 createdb -h localhost -U airflow airflow

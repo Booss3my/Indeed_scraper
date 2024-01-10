@@ -5,7 +5,7 @@ This is an indeed webscraper using a paid webproxy API for scraping (used to wor
 
 
 # Example using an EC2 Ubuntu instance
-![Alt text](images/scraper_diagg.png)
+![Alt text](images/scraper_diagg_2.png)
 
 
 - Make sure your instance has sufficient compute (2vcpus and 8Gb Ram is more than enough) 
@@ -56,10 +56,11 @@ It should look something like this:
 
 ![Alt text](images/docker_compose.PNG)
 
-# Why not search directly on indeed ? 
 ![Alt text](images/working_dag_tasks.PNG)
 
 ![Alt text](images/working_DB.PNG)
+
+# Why not search directly on indeed ? 
 
 More flexibilty and more options:
 - Search by technology, skill, language.

@@ -38,7 +38,7 @@ git clone https://github.com/Booss3my/Datascraper.git
 
 echo -e "AIRFLOW_UID=$(id -u)\n
 AIRFLOW_GID=0\n
-antibotbypass_API_KEY=####"YOUR API KEY HERE####\n
+antibotbypass_API_KEY=0000this0is0a0fake0key0000\n
 DB_USER=airflow\n
 DB_PASS=airflow \n
 DB_HOST=localhost\n
@@ -58,11 +58,14 @@ More flexibilty and more options:
 # Troubleshoosting
 
 If airflow-init breaks due to no database "airflow" in the postgres container, you can go in the postgres container and create the database then rerun the build file:
-
+```
 exec -it docker_postgres_1 
+```
+```
 createdb -h localhost -U airflow airflow
-
+```
 // exit the container (Ctrl+D)
 // Make sure you're in the root folder
-
+```
 sh build.sh
+```

@@ -10,5 +10,5 @@ def load_data():
     _name = os.environ["DB_NAME"]
     
     engine = create_engine(f'postgresql://{_user}:{_pass}@{_host}:5432/{_name}')
-    df=pd.read_csv("tmp/offers.csv",index_col=False) #read file from staging path
+    df=pd.read_csv("staginging/offers.csv",index_col=False) #read file from staging path
     df.to_sql('jobs', engine,if_exists='replace') #normally use if_exists='append'

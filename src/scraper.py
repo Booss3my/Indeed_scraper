@@ -3,7 +3,6 @@ import re
 import pandas as pd
 from zenrows import ZenRowsClient
 import os
-from dotenv import load_dotenv
 from datetime import date, timedelta
 
 RPATH = os.path.dirname(os.path.dirname(__file__))
@@ -104,4 +103,4 @@ def scrape(max_date=2, subjects=["data science"], pages=3):
 
     df = pd.concat(offerlist)
     df.reset_index(drop=True)
-    df.to_csv(os.path.join(RPATH,"tmp/offers.csv"))
+    df.to_csv(os.path.join(RPATH,"staging/offers.csv"))

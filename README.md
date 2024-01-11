@@ -83,13 +83,11 @@ If airflow-init breaks due to the absence of the "airflow" database in the Postg
 Enter the PostgreSQL container:
 
 ```bash
-Copy code
 docker exec -it datascraper_postgres_1 bash
 ```
 Create the database:
 
 ```bash
-Copy code
 createdb -h localhost -U airflow airflow
 ```
 

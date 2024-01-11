@@ -32,11 +32,30 @@ Experience the convenience of automating job applications, streamlining the proc
 - Allow inbound connections on port 8080 (Airflow web server) and port 5432 (PostgreSQL).
 - Set up an `init_instance.sh` file, then execute it to start all containers.
 
+
+
 ## Initialization Script
 
 ```bash
-# Install Docker
+#docker install->start
 sudo apt update
+
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+
+sudo systemctl start docker
+
+#docker-compose install
+sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
 
 # Clone the code and create an .env file
 git clone https://github.com/Booss3my/Datascraper.git

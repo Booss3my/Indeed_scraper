@@ -72,9 +72,7 @@ sh build.sh
 It should look something like this:
 
 ![Alt text](images/docker_compose.PNG)
-
-![Alt text](images/working_dag_tasks.PNG)
-
+![Alt text](images/AIRFLOW_tasks_ec2.png)
 ![Alt text](images/working_DB.PNG)
 
 ## Troubleshooting

@@ -150,7 +150,7 @@ services:
 
   airflow-worker:
     <<: *airflow-common
-    command: celery
+    command: celery worker
 
     healthcheck:
       # yamllint disable rule:line-length

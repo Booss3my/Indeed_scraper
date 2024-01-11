@@ -4,7 +4,7 @@ import pandas as pd
 from zenrows import ZenRowsClient
 import os
 from datetime import date, timedelta
-
+from datetime import datetime
 RPATH = os.path.dirname(os.path.dirname(__file__))
 today = date.today()
 
@@ -103,4 +103,10 @@ def scrape(max_date=2, subjects=["data science"], pages=3):
 
     df = pd.concat(offerlist)
     df.reset_index(drop=True)
-    df.to_csv(os.path.join(RPATH,"staging/offers.csv"))
+    #save file in staging folder
+    staging_path = os.path.join(RPATH,"staging")
+    fname = str(datetime.now().strftime("%Y-%m-%d %H-%M-%S")) + "_scrape.csv"
+    if not os.path.exists(staging_path): 
+        os.makedirs(staging_path) 
+
+    df.to_csv(os.path.join(staging_path,fname))

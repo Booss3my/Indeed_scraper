@@ -122,4 +122,4 @@ def scrape(max_date=2, subjects=["data science"], pages=3):
     
     with open(os.path.join(staging_path,'scrape_metadata.json'), 'w+') as fp:
         json.dump(scrape_info, fp)
-    df.to_csv(os.path.join(staging_path,"offers.csv"))
+    df.to_csv(os.path.join(staging_path,"offers.csv"),index=False)

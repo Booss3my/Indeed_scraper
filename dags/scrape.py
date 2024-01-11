@@ -4,13 +4,15 @@ import sys
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago 
+from dotenv import load_dotenv
 
 RPATH = os.path.dirname(os.path.dirname(__file__))
 sys.path.append(RPATH)
 
 from src.scraper import scrape
 from src.loader import load_data
-from dotenv import load_dotenv
+from src.staging_cleaner import clean 
+
 
 load_dotenv()
 
@@ -40,5 +42,11 @@ task_2 = PythonOperator(
     dag=ingestion_dag,
 )
 
+task_3 = PythonOperator(
+    task_id='clean_staging_area',
+    python_callable=clean,
+    dag=ingestion_dag,
+)
 
-task_1 >> task_2
+
+task_1 >> task_2 >> task_3

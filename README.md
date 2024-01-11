@@ -36,6 +36,8 @@ Experience the convenience of automating job applications, streamlining the proc
 
 ## Initialization Script
 
+Set your hostname and API key
+
 ```bash
 #docker install->start
 sudo apt update
@@ -64,7 +66,7 @@ AIRFLOW_GID=0\n
 antibotbypass_API_KEY=0000this0is0a0fake0key0000\n
 DB_USER=airflow\n
 DB_PASS=airflow \n
-DB_HOST=localhost\n
+DB_HOST=3.250.13.19\n
 DB_NAME=indeed_scrape" > Datascraper/.env
 cd Datascraper
 sh build.sh

@@ -120,6 +120,6 @@ def scrape(max_date=2, subjects=["data science"], pages=3):
         os.makedirs(staging_path) 
     
     
-    with open('scrape_metadata.json', 'w') as fp:
+    with open('scrape_metadata.json', 'w+') as fp:
         json.dump(scrape_info, fp)
     df.to_csv(os.path.join(staging_path,"offers.csv"))

@@ -94,7 +94,6 @@ services:
       POSTGRES_DB: airflow
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
-      - ${AIRFLOW_PROJ_DIR:-}./postgre_config:/etc/postgresql/14/main
     ports:
       - '5432:5432'
     healthcheck:

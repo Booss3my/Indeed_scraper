@@ -14,7 +14,7 @@ from src.loader import load_data
 from src.staging_cleaner import clean 
 
 
-load_dotenv()
+load_dotenv(os.path.join(RPATH,".env"))
 
 # initializing the default arguments that we'll pass to our DAG
 default_args = {

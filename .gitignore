@@ -7,3 +7,5 @@
 /.ipynb_checkpoints
 *.cpython*
 init_instance*
+test.py
+*.json

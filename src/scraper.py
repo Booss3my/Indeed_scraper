@@ -34,11 +34,11 @@ def extract(age: int, start: int, subject: str) -> BeautifulSoup:
 
 def textify(div):
     if div != None:
-        return div.text
+        return div.text 
     return ""
 
 
-def transform(soup: BeautifulSoup):
+def transform(soup: BeautifulSoup,site_link ="https://fr.indeed.com"):
     """
     Transforms the parsed HTML content into a of job offer dataframe.
 
@@ -59,8 +59,8 @@ def transform(soup: BeautifulSoup):
             div.find('div', attrs={'data-testid': 'attribute_snippet_testid'}))
         freshness = textify(
             div.find("span", class_="date"))
-        link = textify(
-            div.find("a", {'id': re.compile(r"job")}))
+        link = site_link+div.find("a", {'id': re.compile(r"job")})["href"]
+        
         offer = {
             'Title': title,
             'Company': company,

@@ -4,7 +4,7 @@
 
 # Overview
 
-This is a web scraper designed for Indeed job listings, utilizing a paid web proxy API for efficient scraping. The application can be deployed using Docker Compose, extracting job information based on specified subjects and job freshness criteria and storing it in a PostgreSQL database.
+This is a web scraper designed for Indeed job listings, utilizing a paid web proxy API. The application can be deployed using Docker Compose, extracting job information based on specified subjects and job freshness criteria and storing it in a PostgreSQL database.
 
 ## Why Use This Scraper?
 Unlock a multitude of options in your job search with this web scraper. Here are some of the possibilities it offers:

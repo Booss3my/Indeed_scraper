@@ -1,6 +1,5 @@
 # Indeed Web Scraper
-
-![Indeed Scraper](https://user-images.githubusercontent.com/56868809/157312375-1e0890cd-2ceb-467d-b1ec-3368f35f9073.png)
+![Scraper Diagram](images/scraper_diagg_2.png)
 
 # Overview
 
@@ -24,7 +23,7 @@ Experience the convenience of automating job applications, streamlining the proc
 
 # Example Deployment on EC2 Ubuntu Instance
 
-![Scraper Diagram](images/scraper_diagg_2.png)
+
 
 ## Requirements
 

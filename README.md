@@ -28,7 +28,7 @@ Experience the convenience of automating job applications, streamlining the proc
 
 ## Requirements
 
-- Ensure your instance has sufficient compute resources (2vCPUs and 8GB RAM recommended).
+- Ensure your instance has sufficient compute resources (2vCPUs and 4GB RAM recommended).
 - Allow inbound connections on port 8080 (Airflow web server) and port 5432 (PostgreSQL).
 - Set up an `init_instance.sh` file, then execute it to start all containers.
 
